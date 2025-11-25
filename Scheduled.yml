@@ -26,37 +26,16 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-- task: CmdLine@2
-  name: SCAScan
-  env:
-    SRCCLR_API_TOKEN: $(SCA_TOKEN)
-  inputs:
-    script: 'curl -sSL  https://download.sourceclear.com/ci.sh | sh'
 
 - task: Veracode@3
   inputs:
-    ConnectionDetailsSelection: 'Service Connection'
-    AnalysisService: 'Veracode Analysis Center'
-    veracodeAppProfile: 'Verademo ADO'
+    ConnectionDetailsSelection: 'Credentials'
+    apiId: '$(API_ID)'
+    apiKey: '$(API_KEY)'
+    veracodeAppProfile: 'Verademo ADO test create'
     version: 'ADO Scheduled Scan: $(build.buildNumber)'
     filepath: './target/verademo.war'
+    optargs: '-businessunit test - pipeline'
     failBuildIfUploadAndScanBuildStepFails: true
     importResults: true
     maximumWaitTime: '360'
-- task: Veracode Flaw Importer@3
-  inputs:
-    ConnectionDetailsSelection: 'Service Connection'
-    AnalysisService: 'Veracode Analysis Center'
-    failBuildIfFlawImporterFails: true
-    veracodeAppProfile: 'Verademo ADO'
-    sandboxName: 
-    scanType: 'Dynamic, Static, SCA'
-    importType: 'All Unmitigated Flaws Violating Policy'
-    workItemType: 'Bug'
-    area: '$(system.teamProject)'
-    overwriteAreaPathInWorkItemsOnImport: true
-    iterationPath: '$(system.teamProject)'
-    overwriteIterationPath: true
-    flawImportLimit: '1000'
-    customFields: 'Some Custom Field:Some Value'
-  
