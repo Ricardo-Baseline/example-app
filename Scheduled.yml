@@ -36,6 +36,7 @@ steps:
     version: 'ADO Scheduled Scan: $(build.buildNumber)'
     filepath: './target/verademo.war'
     optargs: '-businessunit test - pipeline'
+    createProfile: true
     failBuildIfUploadAndScanBuildStepFails: true
     importResults: true
     maximumWaitTime: '360'
