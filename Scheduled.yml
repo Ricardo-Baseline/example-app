@@ -32,7 +32,7 @@ steps:
     ConnectionDetailsSelection: 'Credentials'
     apiId: '$(API_ID)'
     apiKey: '$(API_KEY)'
-    veracodeAppProfile: 'Verademo ADO test create2'
+    veracodeAppProfile: 'Verademo ADO test create3'
     version: 'ADO Scheduled Scan: $(build.buildNumber)'
     filepath: './target/verademo.war'
     optargs: 'businessunit Digital Solutions - pipeline'
