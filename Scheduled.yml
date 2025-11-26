@@ -35,7 +35,7 @@ steps:
     veracodeAppProfile: 'Verademo ADO test create2'
     version: 'ADO Scheduled Scan: $(build.buildNumber)'
     filepath: './target/verademo.war'
-    optargs: '-businessunit test ''-'' pipeline'
+    optargs: 'businessunit Digital Solutions - pipeline'
     createProfile: true
     failBuildIfUploadAndScanBuildStepFails: true
     importResults: false
