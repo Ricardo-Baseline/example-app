@@ -24,9 +24,3 @@ jobs:
         env:
           SRCCLR_API_TOKEN: ${{ secrets.SRCCLR_API_TOKEN }}
         run: curl -sSL https://download.sourceclear.com/ci.sh | sh
-        
-      # Runs an SCA agent-based scan in a container
-      - name: Execute Software Composition Analysis in a container
-        env:
-          SRCCLR_API_TOKEN: ${{ secrets.SRCCLR_API_TOKEN }}
-        run: curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image ricardoapjunior/dind-with-curl:latest --loud
