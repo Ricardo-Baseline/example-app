@@ -32,6 +32,7 @@ steps:
     version: 'Post-merge Scan: $(build.buildNumber)'
     filepath: './target/verademo.war'
     sandboxName: 'Release Candidate'
+    createSandBox: true
     failBuildIfUploadAndScanBuildStepFails: true
     importResults: true
     maximumWaitTime: '360'
