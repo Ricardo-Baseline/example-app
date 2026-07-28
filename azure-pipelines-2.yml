@@ -36,14 +36,11 @@ steps:
 
 - task: CmdLine@2
   name: ExtractMitigations
-  env:
-    VERACODE_API_KEY_ID: $(vid)
-    VERACODE_API_KEY_SECRET: $(vkey)
   inputs:
     script: |
       git clone https://github.com/cadonuno/veracode-pipeline-mitigation
       pip install -r ./veracode-pipeline-mitigation/requirements.txt
-      python ./veracode-pipeline-mitigation/vcpipemit.py -an "Verademo ADO" -rf pipeline.json -of "toCompare.json"
+      python ./veracode-pipeline-mitigation/vcpipemit.py -an "<application name>" -rf <original results .json file> -of "<new output file .json>"
 
 - task: CmdLine@2
   name: CompareResultsAndFailBuild
@@ -51,7 +48,7 @@ steps:
     script: |
       git clone https://github.com/cadonuno/PipelineResultsCompare
       pip install -r ./PipelineResultsCompare/requirements.txt
-      python ./PipelineResultsCompare/pipeline_results_compare.py -of "filtered_pipeline_results.json" -br pipeline.json -ff "toCompare.json" --fail_on_severity "Very High, High"
+      python ./PipelineResultsCompare/pipeline_results_compare.py -of "<new results file>.json" -br <original results .json file> -ff "<new output file .json" --fail_on_severity "Very High, High"
 
 - task: PublishBuildArtifacts@1
   condition:
