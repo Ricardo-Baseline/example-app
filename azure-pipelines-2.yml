@@ -47,8 +47,7 @@ steps:
   inputs:
     script: |
       git clone https://github.com/cadonuno/PipelineResultsCompare
-      pip install -r ./PipelineResultsCompare/requirements.txt
-      python ./PipelineResultsCompare/pipeline_results_compare.py -of "<new results file>.json" -br <original results .json file> -ff "<new output file .json" --fail_on_severity "Very High, High"
+      python ./PipelineResultsCompare/pipeline_results_compare.py -of "<new output file> .json" -br <original results .json file> -ff "<new results file>.json" --fail_on_severity "Very High, High"
 
 - task: PublishBuildArtifacts@1
   condition:
